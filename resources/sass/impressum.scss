@@ -1,0 +1,48 @@
+.impressum {
+    &__button {
+        padding: $btn-padding;
+        cursor: pointer;
+
+        &--dark {
+            background-color: $btn-dark-bg;
+            color: $btn-dark-color;
+            border: none;
+        }
+    }
+}
+
+// _content.scss
+.content {
+    margin-top: $content-margin-top;
+
+    &__title {
+        font-size: $title-font-size;
+    }
+}
+
+// _adresse.scss
+.adresse {
+    font-size: $subtitle-font-size;
+
+    &__detail {
+        margin: $paragraph-margin;
+    }
+}
+
+// _vertreten.scss
+.vertreten {
+    font-size: $subtitle-font-size;
+
+    &_detail {
+        margin: $paragraph-margin;
+    }
+}
+
+// _contact.scss
+.contact {
+    font-size: $subtitle-font-size;
+
+    &__detail {
+        margin: $paragraph-margin;
+    }
+}

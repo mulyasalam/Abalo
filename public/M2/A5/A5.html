@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Datenabfrage Übung</title>
+</head>
+<body>
+<h1>Datenabfrage Übung</h1>
+<div id="ergebnisse">
+    <p id="maxPreis"></p>
+    <p id="minPreis"></p>
+    <p id="preisSumme"></p>
+    <p id="gesamtWert"></p>
+    <p id="anzahlSpielzeug"></p>
+</div>
+
+<script src="data.js"></script>
+<script>
+    // Funktionen hier einfügen
+
+    // a) getMaxPreis
+    function getMaxPreis(data) {
+        let maxPreis = 0;
+        let maxPreisProduktName = "";
+
+        data.produkte.forEach(product => {
+            if (product.preis > maxPreis) {
+                maxPreis = product.preis;
+                maxPreisProduktName = product.name;
+            }
+        });
+
+        return {name: maxPreisProduktName, preis: maxPreis};
+    }
+
+    // b) getMinPreisProdukt
+    // b) getMinPreisProdukt
+    function getMinPreisProdukt(data) {
+        let minPreisProdukt = data.produkte[0];
+
+        data.produkte.forEach(product => {
+            if (product.preis < minPreisProdukt.preis) {
+                minPreisProdukt = product;
+            }
+        });
+
+        // Formatieren und zurückgeben
+        return "Name: " + minPreisProdukt.name + ", Preis: " + minPreisProdukt.preis + ", Kategorie: " + minPreisProdukt.kategorie + ", Anzahl: " + minPreisProdukt.anzahl;
+    }
+
+
+    // c) getPreisSum
+    function getPreisSum(data) {
+        let preisSum = 0;
+
+        data.produkte.forEach(product => {
+            preisSum += product.preis;
+        });
+
+        return preisSum;
+    }
+
+    // d) getGesamtWert
+    function getGesamtWert(data) {
+        let gesamtWert = 0;
+
+        data.produkte.forEach(product => {
+            gesamtWert += product.preis * product.anzahl;
+        });
+
+        return gesamtWert;
+    }
+
+    // e) getAnzahlProdukteOfKategorie
+    function getAnzahlProdukteOfKategorie(data, kategorieName) {
+        let anzahl = 0;
+
+        data.produkte.forEach(product => {
+            if (data.kategorien.find(kategorie => kategorie.id === product.kategorie).name === kategorieName) {
+                anzahl += product.anzahl;
+            }
+        });
+
+        return anzahl;
+    }
+
+    // Funktionen aufrufen und Ergebnisse anzeigen
+    document.getElementById('maxPreis').innerText = "Produkt mit höchstem Preis: " + getMaxPreis(data).name + " Preis:"+ getMaxPreis(data).preis + "€";
+    document.getElementById('minPreis').innerText = "Produkt mit niedrigstem Preis: " + JSON.stringify(getMinPreisProdukt(data));
+    document.getElementById('preisSumme').innerText = "Gesamtsumme aller Produkte: " + getPreisSum(data);
+    document.getElementById('gesamtWert').innerText = "Gesamtwert aller Produkte: " + getGesamtWert(data);
+    document.getElementById('anzahlSpielzeug').innerText = "Anzahl der Produkte in der Kategorie 'Spielzeug': " + getAnzahlProdukteOfKategorie(data, 'Spielzeug');
+</script>
+</body>
+</html>

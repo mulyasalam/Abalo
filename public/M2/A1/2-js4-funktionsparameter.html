@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 4 - Funktionsparameter</title>
+</head>
+<body>
+    <h1>Funktionsparameter</h1>
+    <script>
+        "use strict";
+        function mult(c, a, b ) {
+            return c(a, b);
+        }
+        let summe = mult( function (a, b) {
+            return a * b;
+        }, 3, 4);
+
+        console.log( 'output',summe );
+    </script>
+</body>
+</html>
